@@ -31,4 +31,20 @@ BMP280::~BMP280(){
 
 void BMP280::init(){
 	//Read chip id
+	this->_chipId = this->readChipId();
+}
+
+
+uint8_t BMP280::readChipId()
+{
+	uint8_t buffer[1] = {0};
+	this->read(__BMP280_REGISTER_CHIP_ID,buffer,1);
+	return buffer[0];
+}
+
+BMP280_VALUES BMP280::read()
+{
+	BMP280_VALUES values;
+
+	return values;
 }

@@ -29,7 +29,7 @@ private:
 	I2CInputOutput *_i2cIO; //Underlaying I2CInputOutput instance
 	
 protected:
-	int read(uint8_t *buffer,uint32_t len); //Read data from underlaying I²C IO instance
+	int read(uint8_t reg, uint8_t *buffer,uint32_t len); //Read data from underlaying I²C IO instance
 	int write(uint8_t *data, uint32_t len); //write data to underlaying I²C IO instance
 
 public:

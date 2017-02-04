@@ -84,17 +84,28 @@ typedef struct __BMP280_CALIBRATION {
 
 } BMP280_CALIBRATION, *PBMP280_CALIBRATION;
 
+typedef struct __BMP280_VALUES {
+	int64_t temperature;
+	int64_t	pressure;
+} BMP280_VALUES, *PBMP280_VALUES;
 
 class BMP280: public I2CDevice {
 private:
-	uint8_t	chipId;
+	uint8_t	_chipId;
 	BMP280_CALIBRATION _calibration;
 
 	void init();
+
+	uint8_t readChipId();
 protected:
 public:
 	BMP280(uint8_t address, I2CInputOutput *i2cIO);
 	~BMP280();
+
+	BMP280_VALUES read();
+
+	uint8_t getChipId(){ return this->_chipId;};
+
 };
 
 #endif // __I2C_TK_SDK_BMP280_H__

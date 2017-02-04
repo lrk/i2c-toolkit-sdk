@@ -14,40 +14,23 @@
  * limitations under the License.
  */
 
-#include "I2CDevice.h"
+#include <stdio.h>
+#include <fcntl.h>
+#include <string.h>
+#include <unistd.h>
+#include "BME280.h"
 
-I2CDevice::I2CDevice(uint8_t address, I2CInputOutput *i2cIO) :
-	_deviceAddress(address)
+BME280::BME280(uint8_t address, I2CInputOutput *i2cIO) : 
+	I2CDevice(address,i2cIO),
+	_operatingMode(__BME280_OPERATING_MODE_SLEEP)
 {
-	if (i2cIO == 0)
-	{
-		//Fatal Error
-	}
-	this->_i2cIO = i2cIO;
+
 }
 
-void I2CDevice::setup()
-{
-	if (this->_i2cIO != 0)
-	{
-		this->_i2cIO->setup(_deviceAddress);
-	}
+BME280::~BME280(){
+
 }
 
-int I2CDevice::read(uint8_t reg, uint8_t *buffer, uint32_t len){
-	if (this->_i2cIO == 0)
-	{
-		return I2CIO_ERROR_ERROR;
-	}
-
-	return this->_i2cIO->read(reg,data,len);
-}
-
-int I2CDevice::write(uint8_t *data, uint32_t len){
-	if (this->_i2cIO == 0)
-	{
-		return I2CIO_ERROR_ERROR;
-	}
-
-	return this->_i2cIO->write(data,len);
+void BME280::init(){
+	//Read chip id
 }
