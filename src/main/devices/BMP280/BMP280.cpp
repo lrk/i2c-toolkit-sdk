@@ -214,7 +214,7 @@ double BMP280::compensateTemperature(int32_t rawValue){
 	return temperature;
 }
 
-void BMP::forceReadTemperaturePresure(double *temperature, double *pressure)
+void BMP280::forceReadTemperaturePresure(double *temperature, double *pressure)
 {
 	this->controlMeasure(this->_pressureOversampling,this->_temperatureOversampling,FORCED);
 
