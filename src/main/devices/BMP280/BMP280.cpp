@@ -226,12 +226,12 @@ void BMP::forceReadTemperaturePresure(double *temperature, double *pressure)
 	if (temperature != 0)
 	{
 		int32_t rawTemp =  (buffer[0] << 12) | (buffer[1] << 4) | ((buffer[2] & 0xF0) >> 4);
-		&temperature =  this->compensateTemperature(rawTemp);
+		*temperature =  this->compensateTemperature(rawTemp);
 	}
 	if (pressure != 0)
 	{
 		int32_t rawPressure = (buffer[0] << 12) | (buffer[1] << 4) | ((buffer[2] & 0xF0) >> 4);
-		&pressure= this->compensatePressure(rawPressure);
+		*pressure= this->compensatePressure(rawPressure);
 	}
 }
 
