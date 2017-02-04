@@ -67,6 +67,9 @@
 #define __BMP280_REGISTER_TEMPERATURE_LSB			0xFB
 #define __BMP280_REGISTER_TEMPERATURE_XLSB			0xFC
 
+//Predefined values
+#define __BMP280_CONST_COMPLETE_RESET				0xB6
+
 typedef struct __BMP280_CALIBRATION {
 	uint16_t 	digT1;
 	int16_t 	digT2;
@@ -89,14 +92,35 @@ typedef struct __BMP280_VALUES {
 	int64_t	pressure;
 } BMP280_VALUES, *PBMP280_VALUES;
 
+typedef struct __BMP280_STATUS {
+	bool measuring;
+	bool imUpdate;
+} BMP280_STATUS , *PBMP280_STATUS;
+
+typedef enum __BMP280_OVERSAMPLING {
+	SKIPPED=0X00,
+	OVERSAMPLING_1X  =	0x01,
+	OVERSAMPLING_2X  =	0x02,
+	OVERSAMPLING_4X  =	0x03,
+	OVERSAMPLING_8X  =	0x04,
+	OVERSAMPLING_16X =	0x05
+} BMP280_OVERSAMPLING;
+
+typedef enum __BMP280_OPERATING_MODE {
+	SLEEP 	= 0x00,
+	NORMAL	= 0x03,
+	FORCED	= 0x01
+} BMP280_OPERATING_MODE;
+
 class BMP280: public I2CDevice {
 private:
 	uint8_t	_chipId;
 	BMP280_CALIBRATION _calibration;
 
-
-
 	uint8_t readChipId();
+	double	compensateTemperature(int32_t rawValue);
+	double	compensatePressure(int32_t rawValue);
+
 protected:
 public:
 	BMP280(uint8_t address, I2CInputOutput *i2cIO);
@@ -104,9 +128,17 @@ public:
 
 	int initialize();
 
-	BMP280_VALUES read();
+	//BMP280_VALUES read();
 
 	uint8_t getChipId(){ return this->_chipId;};
+
+	void reset(bool completeReset);
+	BMP280_STATUS status(); 
+	void controlMeasure(BMP280_OVERSAMPLING pressureOversampling, BMP280_OVERSAMPLING temperatureOversampling, BMP280_OPERATING_MODE operatingMode);
+	void config();
+	double pressure();
+	double temperature();
+	BMP280_CALIBRATION readCalibration();
 
 };
 
