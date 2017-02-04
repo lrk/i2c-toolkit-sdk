@@ -30,7 +30,7 @@ OBJ	=	$(SRC:.cpp=.o)
 
 .PHONY: all
 all: $(OBJ)
-	$(CC) -o testBMP280 src/main/devices/BMP280/BMP280.o src/test/BMP280.o
+	$(CC) -o testBMP280 $(OBJ)
 
 %.o: %.cpp
 	echo [Compiling] $<

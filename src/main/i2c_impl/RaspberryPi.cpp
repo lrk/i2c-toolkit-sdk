@@ -29,7 +29,7 @@ RPI_I2CInputOutput::RPI_I2CInputOutput(uint8_t i2cPort) :
 }
 
 RPI_I2CInputOutput::~RPI_I2CInputOutput(){
-
+	this->release();
 }
 
 int	RPI_I2CInputOutput::setup(uint8_t deviceAddress) {
