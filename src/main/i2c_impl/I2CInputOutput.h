@@ -34,7 +34,7 @@ public:
 	void setDeviceAddress(uint8_t deviceAddress);
 	uint8_t getDeviceAddress();
 	
-	virtual int	setup() = 0; //Initialize I²C communications
+	virtual int	setup(uint8_t deviceAddress) = 0; //Initialize I²C communications
 	virtual int release() = 0; //Release I²C communications
 	
 	virtual int read(uint8_t *buffer,uint32_t len) = 0; //Read data from I²C
