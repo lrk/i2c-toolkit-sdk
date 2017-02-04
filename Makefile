@@ -30,7 +30,11 @@ OBJ	=	$(SRC:.cpp=.o)
 
 .PHONY: all
 all: $(OBJ)
-	$(CC) -o testBMP280 $(OBJ)
+	$(CC) -o testBMP280 src/main/devices/BMP280/BMP280.o \
+						src/test/BMP280.o \
+						src/main/devices/I2CDevice.o \
+						src/main/i2c_impl/RaspberryPi.o \
+						src/main/i2c_impl/I2CInputOutput.o
 
 %.o: %.cpp
 	echo [Compiling] $<

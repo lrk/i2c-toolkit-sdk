@@ -23,7 +23,6 @@ I2CInputOutput::I2CInputOutput() :
 }
 
 I2CInputOutput::~I2CInputOutput() {
-	this->release();
 }
 
 void I2CInputOutput::setDeviceAddress(uint8_t deviceAddress) {
