@@ -26,9 +26,9 @@ class ESP8266_I2CInputOutput : public I2CInputOutput {
 private:
 protected:
 public:
-	int setup(){return 0;}; //TODO Implementation
-	int release(){return 0;}; //TODO Implementation
-	int read(uint8_t *buffer,uint32_t len){ return 0;}; //TODO Implementation
-	int int write(uint8_t *data, uint32_t len){return 0;}; //TODO Implementation
+	virtual int setup(){return 0;}; //TODO Implementation
+	virtual int release(){return 0;}; //TODO Implementation
+	virtual int read(uint8_t *buffer,uint32_t len){ return 0;}; //TODO Implementation
+	virtual int int write(uint8_t *data, uint32_t len){return 0;}; //TODO Implementation
 };
 #endif //__I2C_TK_SDK_I2CIO_ESP3266_H__
