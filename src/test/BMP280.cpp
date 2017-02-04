@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 #include <signal.h>
-#include <unistd.h>
+#include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <iostream>
 #include <iomanip>
 #include <string.h>
