@@ -71,8 +71,8 @@ private:
 public:
 	SSD1306(uint8_t address, I2CInputOutput *i2cIO);
 	~SSD1306();
-	virtual void init();
-	
+	void init();
+
 	void send(uint8_t *data, uint32_t len);
 	void boot();
 	void displayOn(bool enabled);
