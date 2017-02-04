@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+#include <signal.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <iostream>
@@ -23,15 +23,51 @@
 #include "../main/i2c_impl/RaspberryPi.h"
 using namespace std;
 
+RPI_I2CInputOutput *RPI_IO=0;
+BMP280 *bmp280=0;
+
+void signal_callback(int s){
+    printf("Caught signal %d\n",s);
+
+    freeResources();
+    exit(1); 
+}
+
+void freeResources()
+{
+	cout << "Clearing resources" << endl;
+    if (bmp280 != 0)
+    {	
+		if (RPI_IO != 0)
+	    {
+	    	bmp280->reset(true);
+	    	delete(RPI_IO);
+	    }
+    	delete(bmp280);
+    }
+}
+
+void initializeSignalCallback()
+{
+	struct sigaction sigIntHandler;
+
+	sigIntHandler.sa_handler = signal_callback;
+	sigemptyset(&sigIntHandler.sa_mask);
+	sigIntHandler.sa_flags = 0;
+
+	sigaction(SIGINT, &sigIntHandler, NULL);
+}
+
 int main()
 {
+	initializeSignalCallback();
 	cout << "BMP280 Test" << endl;
 
-	RPI_I2CInputOutput *RPI_IO = new RPI_I2CInputOutput(1);
-	BMP280 *bmp280 = new BMP280(0x76,RPI_IO);
+	RPI_IO = new RPI_I2CInputOutput(1);
+	bmp280 = new BMP280(0x76,RPI_IO);
 
 	cout << "Full reset of the Device" << endl;
-	//bmp280->reset(true);
+	bmp280->reset(true);
 	cout << "Initializing Device" << endl;
 	bmp280->initialize();
 
@@ -73,10 +109,6 @@ int main()
     }
     while(getchar() != 32 || getchar() != ' ');
     
-    bmp280->reset(true);
-
-	cout << "Clearing resources" << endl;
-	delete(bmp280);
-	delete(RPI_IO);
+    freeResources();
 	return 0;
 }
