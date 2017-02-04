@@ -22,10 +22,10 @@
 
 BMP280::BMP280(uint8_t address, I2CInputOutput *i2cIO) : 
 	I2CDevice(address,i2cIO),
-	_fineTemperature(0),
 	_temperatureOversampling(SKIPPED),
 	_pressureOversampling(SKIPPED),
-	_operatingMode(SLEEP)
+	_operatingMode(SLEEP),
+	_fineTemperature(0)
 {
 }
 
@@ -65,7 +65,7 @@ uint8_t BMP280::readChipId()
  */
 void BMP280::reset(bool completeReset)
 {
-	uint8_t buffer[2] = {__BMP280_REGISTER_RESET, completeReset ? __BMP280_CONST_COMPLETE_RESET : 0x00};
+	uint8_t buffer[2] = {__BMP280_REGISTER_RESET, (uint8_t) completeReset ? __BMP280_CONST_COMPLETE_RESET : 0x00};
 	I2CDevice::write(buffer,2);
 
 	this->_temperatureOversampling = SKIPPED;
