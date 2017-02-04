@@ -16,7 +16,7 @@
 
 CC 		= g++
 INCLUDE	= -I.
-DEBUG	= 
+DEBUG	= -g 
 CFLAGS	= $(DEBUG) -Wall
 
 ifneq ($V,1)
