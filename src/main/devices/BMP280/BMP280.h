@@ -94,13 +94,15 @@ private:
 	uint8_t	_chipId;
 	BMP280_CALIBRATION _calibration;
 
-	void init();
+
 
 	uint8_t readChipId();
 protected:
 public:
 	BMP280(uint8_t address, I2CInputOutput *i2cIO);
 	~BMP280();
+
+	virtual void init();
 
 	BMP280_VALUES read();
 

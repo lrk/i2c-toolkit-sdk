@@ -22,7 +22,6 @@
 
 BMP280::BMP280(uint8_t address, I2CInputOutput *i2cIO) : I2CDevice(address,i2cIO)
 {
-
 }
 
 BMP280::~BMP280(){

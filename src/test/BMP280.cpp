@@ -19,9 +19,23 @@
 #include <iostream>
 #include <string.h>
 #include "../main/devices/BMP280/BMP280.h"
-
+#include "../main/i2c_impl/RaspberryPi.h"
 using namespace std;
+
 int main()
 {
+	cout << "BPM280 Test" << endl;
 
+	RPI_I2CInputOutput *RPI_IO = new RPI_I2CInputOutput(1);
+	BMP280 *bpm280 = new BMP280(0x76,RPI_IO);
+
+	cout << "Initializing Device" << endl;
+	bpm280->init();
+
+	cout << "Chip ID: " << bmp280->getChipId() << endl;
+
+	cout << "Clearing resources" << endl;
+	delete(bpm280);
+	delete(RPI_IO);
+	return 0;
 }

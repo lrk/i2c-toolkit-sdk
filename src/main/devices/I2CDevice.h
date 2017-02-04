@@ -37,6 +37,7 @@ public:
 	~I2CDevice(){};
 
 	void setup();
+	virtual void init() = 0;
 	virtual int initialize() = 0; //Send initialization commands to device
 
 	

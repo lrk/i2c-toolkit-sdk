@@ -59,7 +59,7 @@ private:
 	uint8_t	_i2cPort;
 	uint8_t	_slaveAddress;
 	bool	_isCommandMode;
-	void init();
+	
 
 	uint8_t _commandBuffer[__SSD1306_CMD_BUFFER_MAXSIZE];
 	uint32_t _commandBufferLen;
@@ -71,7 +71,8 @@ private:
 public:
 	SSD1306(uint8_t address, I2CInputOutput *i2cIO);
 	~SSD1306();
-
+	virtual void init();
+	
 	void send(uint8_t *data, uint32_t len);
 	void boot();
 	void displayOn(bool enabled);
