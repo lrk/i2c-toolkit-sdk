@@ -72,9 +72,15 @@ int RPI_I2CInputOutput::release(){
 }
 
 int RPI_I2CInputOutput::read(uint8_t reg,uint8_t *buffer,uint32_t len){
-	::seek(this->_fileDescriptor,reg,SEEK_CUR);
-	int count = ::read(this->_fileDescriptor,buffer,sizeof(uint8_t)*len);
-	return 0;
+	int count = -1;
+
+	if (::lseek(this->_fileDescriptor,reg,SEEK_CUR) < -1)
+	{
+		perror("lseek: ");
+	}else{
+		count = ::read(this->_fileDescriptor,buffer,sizeof(uint8_t)*len);
+	}	
+	return count;
 }
 
 int RPI_I2CInputOutput::write(uint8_t *data, uint32_t len){
