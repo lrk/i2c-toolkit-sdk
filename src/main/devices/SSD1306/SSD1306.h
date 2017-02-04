@@ -70,7 +70,7 @@ private:
 	void setBufferMode(bool bufferEnabled);
 public:
 	SSD1306(uint8_t address, I2CInputOutput *i2cIO);
-	~SSD1306();
+	virtual ~SSD1306();
 	int initialize();
 
 	void send(uint8_t *data, uint32_t len);

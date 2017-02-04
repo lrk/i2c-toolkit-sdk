@@ -100,7 +100,7 @@ private:
 protected:
 public:
 	BMP280(uint8_t address, I2CInputOutput *i2cIO);
-	~BMP280();
+	virtual ~BMP280();
 
 	int initialize();
 

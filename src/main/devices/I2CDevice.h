@@ -34,7 +34,7 @@ protected:
 
 public:
 	I2CDevice(uint8_t address, I2CInputOutput *i2cIO);
-	~I2CDevice(){};
+	virtual ~I2CDevice(){};
 
 
 	virtual int initialize(); //Send initialization commands to device

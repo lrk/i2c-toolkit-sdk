@@ -115,7 +115,7 @@ private:
 protected:
 public:
 	BME280(uint8_t address, I2CInputOutput *i2cIO);
-	~BME280();
+	virtual ~BME280();
 	int initialize();
 };
 

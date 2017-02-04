@@ -27,6 +27,7 @@ private:
 protected:
 public:
 	ESP8266_I2CInputOutput(){ };
+	virtual ~ESP8266_I2CInputOutput(){};
 	virtual int setup(uint8_t deviceAddress){ this->setDeviceAddress(deviceAddress); return 0;}; //TODO Implementation
 	virtual int release(){return 0;}; //TODO Implementation
 	virtual int read(uint8_t reg,uint8_t *buffer,uint32_t len){ return 0;}; //TODO Implementation
