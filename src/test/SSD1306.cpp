@@ -22,6 +22,7 @@
 using namespace std;
 int main()
 {
+	/*
 	SSD1306* oled = new SSD1306(1,0x3C);
 
 
@@ -60,6 +61,6 @@ int main()
 	}
 
 	delete(oled);
-
+*/
 	return 0;
 }
