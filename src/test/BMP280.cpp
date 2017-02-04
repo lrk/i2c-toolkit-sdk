@@ -103,8 +103,7 @@ int main()
 
 	cout << "Looping through reading T° & hPa" << endl;
 	bmp280->controlMeasure(OVERSAMPLING_1X,OVERSAMPLING_1X,FORCED);
-	BMP280_STATUS status = bmp280->status();
-	cout << "Device status: measuring ?"<< status.measuring << ", imUpdate? " << status.imUpdate << endl;
+	
 	double temperature = 0.0;
 	double pressure = 0.0;
     while(true){
