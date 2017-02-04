@@ -19,6 +19,7 @@
 #include <unistd.h>
 #include <sys/ioctl.h>
 #include <linux/i2c-dev.h>
+
 #include "RaspberryPi.h"
 
 RPI_I2CInputOutput::RPI_I2CInputOutput(uint8_t i2cPort) :
@@ -76,6 +77,6 @@ int RPI_I2CInputOutput::read(uint8_t *buffer,uint32_t len){
 }
 
 int RPI_I2CInputOutput::write(uint8_t *data, uint32_t len){
-	int count = write(this->_fileDescriptor,data,sizeof(uint8_t)*len);
+	int count = ::write(this->_fileDescriptor,data,sizeof(uint8_t)*len);
 	return count;
 }
