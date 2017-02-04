@@ -105,8 +105,11 @@ int main()
 	
     while(true){
 		bmp280->controlMeasure(OVERSAMPLING_1X,OVERSAMPLING_1X,FORCED);
+		do{
+
 		BMP280_STATUS status = bmp280->status();
 		cout << "Device status: measuring ?"<< status.measuring << ", imUpdate? " << status.imUpdate << endl;
+	}while(status.measuring);
     	cout << "Reading Temperature: " << bmp280->temperature() << endl;
     	cout << "Reading Pressure: " << bmp280->pressure() << endl;
     	sleep(1);
