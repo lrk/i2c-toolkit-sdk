@@ -64,7 +64,7 @@ int main()
 
 	cout << "Looping through reading T° & hPa (quit: press space key). " << endl;
 	do{
-		bmp280->controlMeasure(0x00,0x00,FORCED);
+		bmp280->controlMeasure(SKIPPED,SKIPPED,FORCED);
 		sleep(1);
     	cout << "Reading Temperature: " << bmp280->temperature() << endl;
     	cout << "Reading Pressure: " << bmp280->pressure() << endl;
