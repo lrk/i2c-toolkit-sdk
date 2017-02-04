@@ -147,6 +147,7 @@ public:
 	void config();
 	double pressure();
 	double temperature();
+	void forceReadTemperaturePresure(double *temperature, double *pressure);
 
 	BMP280_CALIBRATION readCalibration();
 
