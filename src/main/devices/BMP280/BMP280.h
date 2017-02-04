@@ -138,6 +138,7 @@ public:
 	void config();
 	double pressure();
 	double temperature();
+	
 	BMP280_CALIBRATION readCalibration();
 
 };
