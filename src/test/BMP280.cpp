@@ -99,15 +99,15 @@ int main()
 	cout << endl;
 
 	cout << "Looping through reading T° & hPa" << endl;
-	do{
+	
+    while(true){
 		bmp280->controlMeasure(SKIPPED,SKIPPED,FORCED);
 		sleep(1);
     	cout << "Reading Temperature: " << bmp280->temperature() << endl;
     	cout << "Reading Pressure: " << bmp280->pressure() << endl;
     	sleep(1);
-    	cout << "Space to quit, Enter to continue" << endl;
-    }
-    while(getchar() != 32 || getchar() != ' ');
+    	cout << "Press CTRL+C to quit" << endl;
+    };
     
     freeResources();
 	return 0;
