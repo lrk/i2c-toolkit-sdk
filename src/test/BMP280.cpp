@@ -24,18 +24,18 @@ using namespace std;
 
 int main()
 {
-	cout << "BPM280 Test" << endl;
+	cout << "BMP280 Test" << endl;
 
 	RPI_I2CInputOutput *RPI_IO = new RPI_I2CInputOutput(1);
-	BMP280 *bpm280 = new BMP280(0x76,RPI_IO);
+	BMP280 *bmp280 = new BMP280(0x76,RPI_IO);
 
 	cout << "Initializing Device" << endl;
-	bpm280->initialize();
+	bmp280->initialize();
 
 	cout << "Chip ID: " << bmp280->getChipId() << endl;
 
 	cout << "Clearing resources" << endl;
-	delete(bpm280);
+	delete(bmp280);
 	delete(RPI_IO);
 	return 0;
 }
