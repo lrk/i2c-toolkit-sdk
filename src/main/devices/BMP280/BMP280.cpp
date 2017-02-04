@@ -144,7 +144,7 @@ double BMP280::pressure()
 }
 
 double BMP280::compensatePressure(int32_t rawValue){
-	return 0.0;
+	return (double)rawValue;
 }
 
 /*
@@ -164,7 +164,7 @@ double BMP280::temperature()
 }
 
 double BMP280::compensateTemperature(int32_t rawValue){
-	return 0.0;
+	return (double)rawValue;
 }
 
 /*
