@@ -116,7 +116,7 @@ class BMP280: public I2CDevice {
 private:
 	uint8_t	_chipId;
 	BMP280_CALIBRATION _calibration;
-
+	int32_t	_fineTemperature;
 	uint8_t readChipId();
 	double	compensateTemperature(int32_t rawValue);
 	double	compensatePressure(int32_t rawValue);
@@ -138,7 +138,7 @@ public:
 	void config();
 	double pressure();
 	double temperature();
-	
+
 	BMP280_CALIBRATION readCalibration();
 
 };
