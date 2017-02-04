@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include <stdint.h>
 
 #ifndef __I2C_TK_SDK_I2CIO_H__
 #define __I2C_TK_SDK_I2CIO_H__
@@ -25,7 +26,7 @@ class I2CInputOutput {
 private:
 protected:
 public:
-	~I2CInputOutput();
+	virtual ~I2CInputOutput();
 	
 	virtual int	setup() = 0; //Initialize I²C communications
 	virtual int release() = 0; //Release I²C communications

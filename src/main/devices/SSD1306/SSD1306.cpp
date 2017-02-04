@@ -61,7 +61,7 @@ void SSD1306::send(uint8_t *data, uint32_t len)
 {
 	if (this->_bufferMode){
 		fprintf(stdout,"Adding data to command buffer...\n");
-		for(int i=0;i<len;i++){
+		for(uint32_t i=0;i<len;i++){
 			fprintf(stdout, "0x%02x ",data[i]);
 		}
 		fprintf(stdout, "\n");

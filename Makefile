@@ -19,6 +19,9 @@ INCLUDE	= -I.
 DEBUG	= 
 CFLAGS	= $(DEBUG) -Wall
 
+ifneq ($V,1)
+Q ?= @
+endif
 
 SRC		= $(shell find . -name *.cpp )
 HEADERS	= $(shell find . -name *.h )
@@ -28,7 +31,7 @@ OBJ	=	$(SRC:.cpp=.o)
 .PHONY: all
 all: $(OBJ)
 
-.cpp.o:
+%.o: %.cpp
 	echo [Compiling] $<
 	$(CC) -c $(CFLAGS) $< -o $@
 
