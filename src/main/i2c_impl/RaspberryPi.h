@@ -40,7 +40,7 @@ public:
 	RPI_I2CInputOutput(uint8_t i2cPort);
 	~RPI_I2CInputOutput();
 	
-	virtual int	setup(); //Initialize I²C communications
+	virtual int	setup(uint8_t deviceAddress); //Initialize I²C communications
 	virtual int release(); //Release I²C communications
 	
 	virtual int read(uint8_t *buffer,uint32_t len); //Read data from I²C
