@@ -38,8 +38,10 @@ int BMP280::initialize(){
 
 uint8_t BMP280::readChipId()
 {
-	uint8_t buffer[1] = {0};
-	I2CDevice::read(__BMP280_REGISTER_CHIP_ID,buffer,1);
+	uint8_t buffer[1] = {__BMP280_REGISTER_CHIP_ID};
+	I2CDevice::write(buffer,1);
+	I2CDevice::waitForResponse();
+	I2CDevice::read(buffer,1);
 	return buffer[0];
 }
 

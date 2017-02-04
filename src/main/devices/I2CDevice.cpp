@@ -39,13 +39,13 @@ void I2CDevice::setup()
 	}
 }
 
-int I2CDevice::read(uint8_t reg, uint8_t *buffer, uint32_t len){
+int I2CDevice::read(uint8_t *buffer, uint32_t len){
 	if (this->_i2cIO == 0)
 	{
 		return I2CIO_ERROR_ERROR;
 	}
 
-	return this->_i2cIO->read(reg,buffer,len);
+	return this->_i2cIO->read(buffer,len);
 }
 
 int I2CDevice::write(uint8_t *data, uint32_t len){

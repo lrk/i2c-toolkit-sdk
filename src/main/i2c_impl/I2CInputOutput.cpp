@@ -32,3 +32,8 @@ void I2CInputOutput::setDeviceAddress(uint8_t deviceAddress) {
 uint8_t I2CInputOutput::getDeviceAddress() {
 	return this->_deviceAddress;
 }
+
+void I2CInputOutput::waitForResponse()
+{
+	usleep(I2CIO_WAIT_TIME);
+}

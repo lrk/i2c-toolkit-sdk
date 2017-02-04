@@ -66,16 +66,11 @@ int	RPI_I2CInputOutput::setup(uint8_t deviceAddress) {
 }
 
 int RPI_I2CInputOutput::release(){
-
 	close(this->_fileDescriptor);
 	return I2CIO_ERROR_OK;
 }
 
-int RPI_I2CInputOutput::read(uint8_t reg,uint8_t *buffer,uint32_t len){
-
-	uint8_t command[1] = {reg};
-	this->write(command,1);
-	
+int RPI_I2CInputOutput::read(uint8_t *buffer,uint32_t len){	
 	int count = ::read(this->_fileDescriptor,buffer,sizeof(uint8_t)*len);	
 	return count;
 }

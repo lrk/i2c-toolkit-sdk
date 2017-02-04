@@ -30,7 +30,7 @@ public:
 	virtual ~ESP8266_I2CInputOutput(){};
 	virtual int setup(uint8_t deviceAddress){ this->setDeviceAddress(deviceAddress); return 0;}; //TODO Implementation
 	virtual int release(){return 0;}; //TODO Implementation
-	virtual int read(uint8_t reg,uint8_t *buffer,uint32_t len){ return 0;}; //TODO Implementation
+	virtual int read(uint8_t *buffer,uint32_t len){ return 0;}; //TODO Implementation
 	virtual int int write(uint8_t *data, uint32_t len){return 0;}; //TODO Implementation
 };
 #endif //__I2C_TK_SDK_I2CIO_ESP3266_H__

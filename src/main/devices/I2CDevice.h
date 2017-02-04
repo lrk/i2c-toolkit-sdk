@@ -29,13 +29,13 @@ private:
 	I2CInputOutput *_i2cIO; //Underlaying I2CInputOutput instance
 	void setup();
 protected:
-	int read(uint8_t reg, uint8_t *buffer,uint32_t len); //Read data from underlaying I²C IO instance
+	int read(uint8_t *buffer,uint32_t len); //Read data from underlaying I²C IO instance
 	int write(uint8_t *data, uint32_t len); //write data to underlaying I²C IO instance
 
 public:
 	I2CDevice(uint8_t address, I2CInputOutput *i2cIO);
 	virtual ~I2CDevice(){};
-
+	void waitForResponse(){ this->_i2cIO->waitForResponse(); };
 
 	virtual int initialize(); //Send initialization commands to device
 
