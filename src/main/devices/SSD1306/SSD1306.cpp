@@ -31,8 +31,9 @@ SSD1306::~SSD1306(){
 	this->displayOn(false);
 }
 
-SSD1306::initialize()
+SSD1306::init()
 {
+	I2CDevice::init();
 	fprintf(stdout,"Booting SSD1306\n");
 	
 	this->setBufferMode(true);

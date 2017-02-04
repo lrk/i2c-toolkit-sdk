@@ -37,7 +37,7 @@ public:
 	virtual ~I2CDevice(){};
 
 
-	virtual int initialize(); //Send initialization commands to device
+	virtual int init(); //Send initialization commands to device
 
 	
 };
