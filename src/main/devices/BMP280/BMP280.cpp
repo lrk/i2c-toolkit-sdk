@@ -20,7 +20,9 @@
 #include <unistd.h>
 #include "BMP280.h"
 
-BMP280::BMP280(uint8_t address, I2CInputOutput *i2cIO) : I2CDevice(address,i2cIO)
+BMP280::BMP280(uint8_t address, I2CInputOutput *i2cIO) : 
+	I2CDevice(address,i2cIO),
+	_fineTemperature(0)
 {
 }
 
@@ -32,6 +34,10 @@ int BMP280::initialize(){
 	I2CDevice::initialize();
 	//Read chip id
 	this->_chipId = this->readChipId();
+
+	//Read calibration
+	this->_calibration = this->readCalibration();
+
 	return 0;
 }
 
@@ -164,7 +170,17 @@ double BMP280::temperature()
 }
 
 double BMP280::compensateTemperature(int32_t rawValue){
-	return (double)rawValue;
+
+	double x1 = ( ((double) rawValue) / 16384.0 - ((double) this->_calibration.digT1) / 1024.0 ) *
+				((double)this->_calibration.digT2);
+
+	double x2 = ( ((double) rawValue) / 131072.0 - ((double) this->_calibration.digT1) / 8192.0 ) *
+				( ((double) rawValue) / 131072.0 - ((double) this->_calibration.digT1) / 8192.0 ) * 
+				((double)this->_calibration.digT3);
+
+	this->_fineTemperature = (int32_t) (x1 + x2);
+	double temperature = (x1 + x2) / 5120.0;
+	return temperature;
 }
 
 /*
