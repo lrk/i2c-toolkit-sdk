@@ -25,6 +25,10 @@ I2CDevice::I2CDevice(uint8_t address, I2CInputOutput *i2cIO) :
 	}
 	this->_i2cIO = i2cIO;
 }
+void I2CDevice::initialize()
+{
+	this->setup();
+}
 
 void I2CDevice::setup()
 {

@@ -30,7 +30,7 @@ int main()
 	BMP280 *bpm280 = new BMP280(0x76,RPI_IO);
 
 	cout << "Initializing Device" << endl;
-	bpm280->init();
+	bpm280->initialize();
 
 	cout << "Chip ID: " << bmp280->getChipId() << endl;
 

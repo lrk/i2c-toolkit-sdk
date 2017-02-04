@@ -28,7 +28,7 @@ BMP280::~BMP280(){
 
 }
 
-void BMP280::init(){
+void BMP280::initialize(){
 	//Read chip id
 	this->_chipId = this->readChipId();
 }

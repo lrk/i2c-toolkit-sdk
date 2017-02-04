@@ -25,12 +25,64 @@ SSD1306::SSD1306(uint8_t address, I2CInputOutput *i2cIO) : I2CDevice(address,i2c
 	this->_bufferMode=false;
 	this->_isCommandMode = true;
 	this->resetCommandBuffer();
-
-	this->init();
 }
 
 SSD1306::~SSD1306(){
 	this->displayOn(false);
+}
+
+SSD1306::initialize()
+{
+	fprintf(stdout,"Booting SSD1306\n");
+	
+	this->setBufferMode(true);
+	
+	//Initialzation sequence
+	
+	this->displayOn(false);
+
+	//Set Display Offset D3h, 00h
+	this->setDisplayOffset(0);
+
+	//Set Display Start Line 40h
+	this->setDisplayStartLine(0);
+	//Enable charge pump regulator 8Dh, 14h
+	this->chargePumpOn(true);
+
+	//Set MUX Ratio A8h, 3Fh
+	this->resetMultiplexRatio();
+
+	//Set Segment re-map A0h/A1h
+	this->setSegmentRemap(false);
+
+	//Set COM Output Scan Direction C0h/C8h
+	this->setCOMOutputScanDirection(false);
+
+	//Set COM Pins hardware configuration DAh, 02
+	this->setCOMPinsHWConfiguration(false,false);
+
+	//Set Contrast Control 81h, 7Fh
+	this->resetContrast();
+
+	//Set Osc Frequency D5h, 80h
+	this->resetOscillatorFrequency();
+
+	this->setPrechargePeriod(0x01,0x0F);
+	this->setVComhDeselectLevel(2);
+
+	this->setMemoryAddressingMode(__SSD1306_HORIZONTAL_ADDRESSING_MODE);
+
+	//Set Normal Display A6h
+	this->invertDisplay(false);
+
+	//Disable Entire Display On A4h
+	this->entireDisplayOn(false);
+
+	//Display On AFh
+	this->displayOn(true);
+
+	this->setBufferMode(false);
+	this->flushBuffer();
 }
 
 void SSD1306::resetCommandBuffer()
@@ -197,59 +249,4 @@ void SSD1306::chargePumpOn(bool enabled)
 void SSD1306::setMemoryAddressingMode(uint8_t mode){
 	uint8_t data[] = {__SSD1306_CMD_SET_MEMORY_ADDRESSING_MODE, mode};
 	this->send(data,2);	
-}
-
-void  SSD1306::boot()
-{
-	fprintf(stdout,"Booting SSD1306\n");
-	
-	this->setBufferMode(true);
-	
-	//Initialzation sequence
-	
-	this->displayOn(false);
-
-	//Set Display Offset D3h, 00h
-	this->setDisplayOffset(0);
-
-	//Set Display Start Line 40h
-	this->setDisplayStartLine(0);
-	//Enable charge pump regulator 8Dh, 14h
-	this->chargePumpOn(true);
-
-	//Set MUX Ratio A8h, 3Fh
-	this->resetMultiplexRatio();
-
-	//Set Segment re-map A0h/A1h
-	this->setSegmentRemap(false);
-
-	//Set COM Output Scan Direction C0h/C8h
-	this->setCOMOutputScanDirection(false);
-
-	//Set COM Pins hardware configuration DAh, 02
-	this->setCOMPinsHWConfiguration(false,false);
-
-	//Set Contrast Control 81h, 7Fh
-	this->resetContrast();
-
-	//Set Osc Frequency D5h, 80h
-	this->resetOscillatorFrequency();
-
-	this->setPrechargePeriod(0x01,0x0F);
-	this->setVComhDeselectLevel(2);
-
-	this->setMemoryAddressingMode(__SSD1306_HORIZONTAL_ADDRESSING_MODE);
-
-	//Set Normal Display A6h
-	this->invertDisplay(false);
-
-	//Disable Entire Display On A4h
-	this->entireDisplayOn(false);
-
-	//Display On AFh
-	this->displayOn(true);
-
-	this->setBufferMode(false);
-	this->flushBuffer();
-	
 }
