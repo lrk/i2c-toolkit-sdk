@@ -21,7 +21,9 @@
 #include <linux/i2c-dev.h>
 #include "RaspberryPi.h"
 
-RPI_I2CInputOutput::RPI_I2CInputOutput(uint8_t i2cPort){
+RPI_I2CInputOutput::RPI_I2CInputOutput(uint8_t i2cPort) :
+	_i2cPort(i2cPort)
+{
 
 }
 
@@ -33,8 +35,10 @@ int	RPI_I2CInputOutput::setup(){
 
 	switch(this->_i2cPort)
 	{
-		case 0: this->_fileDescriptor = open(__I2C_TK_SDK_I2CIO_RPI_PORT0,O_RDWR);break;
-		case 1: this->_fileDescriptor = open(__I2C_TK_SDK_I2CIO_RPI_PORT1,O_RDWR);break;
+		case 0: this->_fileDescriptor = open(__I2C_TK_SDK_I2CIO_RPI_PORT0,O_RDWR); 
+				break;
+		case 1: this->_fileDescriptor = open(__I2C_TK_SDK_I2CIO_RPI_PORT1,O_RDWR); 
+				break;
 		default: 
 			//No other port available
 		break;
@@ -60,7 +64,7 @@ int	RPI_I2CInputOutput::setup(){
 }
 
 int RPI_I2CInputOutput::release(){
-	
+
 	close(this->_fileDescriptor);
 	return I2CIO_ERROR_OK;
 }

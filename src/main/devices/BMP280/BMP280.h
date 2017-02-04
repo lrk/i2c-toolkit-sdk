@@ -16,7 +16,7 @@
 
 #include <stdint.h>
 #include <stdio.h>
-#include "../AbstractI2CDevice.h"
+#include "../I2CDevice.h"
 
 #ifndef __I2C_TK_SDK_BMP280_H__
 
@@ -91,7 +91,7 @@ typedef struct _BMP280_CALIBRATION {
 } BMP280_CALIBRATION, *PBMP280_CALIBRATION;
 
 
-class BMP280: public AbstractI2CDevice {
+class BMP280: public I2CDevice {
 private:
 	uint8_t	_i2cPort;
 	uint8_t	_slaveAddress;

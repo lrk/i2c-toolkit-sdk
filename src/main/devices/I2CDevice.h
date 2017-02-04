@@ -14,14 +14,25 @@
  * limitations under the License.
  */
 
-#include "AbstractI2CDevice.h"
+#ifndef __I2C_TK_SDK_ABSTRACT_DEVICE_H__
+#define __I2C_TK_SDK_ABSTRACT_DEVICE_H__
 
-AbstractI2CDevice::AbstractI2CDevice(uint8_t address, I2CInputOutput *i2cIO)
-	_deviceAddress(address)
-{
-	if (i2cIO == NULL)
-	{
-		//Fatal Error
-	}
-	this->_i2cIO = i2cIO;
+#include "../i2c_impl/I2CInputOutput.h"
+
+/*
+	Abstract I²C Device
+*/
+class I2CDevice {
+private:
+	uint8_t	_deviceAddress;	//unsigned short for device I²C Address
+	I2CInputOutput *_i2cIO;
+protected:
+public:
+	I2CDevice(uint8_t address, I2CInputOutput *i2cIO);
+	~I2CDevice();
+
+	virtual int initialize() = 0; //Send initialization commands to device
+	
 }
+
+#endif //__I2C_TK_SDK_ABSTRACT_DEVICE_H__

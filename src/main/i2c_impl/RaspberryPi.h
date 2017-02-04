@@ -33,8 +33,8 @@
 
 class RPI_I2CInputOutput : public I2CInputOutput {
 private:
-	int _fileDescriptor;
 	uint8_t	_i2cPort;
+	int _fileDescriptor;
 protected:
 public:
 	RPI_I2CInputOutput();

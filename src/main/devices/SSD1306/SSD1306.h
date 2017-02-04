@@ -15,7 +15,7 @@
  */
 #include <stdint.h>
 #include <stdio.h>
-#include "../AbstractI2CDevice.h"
+#include "../I2CDevice.h"
 
 #ifndef __I2C_TK_SDK_I2CIO_SSD1306_H__
 
@@ -52,7 +52,7 @@
 
 #define __SSD1306_CMD_BUFFER_MAXSIZE			2048
 
-class SSD1306: public AbstractI2CDevice {
+class SSD1306: public I2CDevice {
 
 private:
 	int _fileDescriptor;
