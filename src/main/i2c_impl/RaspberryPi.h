@@ -39,6 +39,7 @@ protected:
 public:
 	RPI_I2CInputOutput();
 	~RPI_I2CInputOutput();
+	
 	int	setup(); //Initialize I²C communications
 	int release(); //Release I²C communications
 	
