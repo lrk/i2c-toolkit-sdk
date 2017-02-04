@@ -28,7 +28,7 @@ BMP280::~BMP280(){
 
 }
 
-int BMP280::initialize(){
+int BMP280::init(){
 	I2CDevice::init();
 	//Read chip id
 	this->_chipId = this->readChipId();
