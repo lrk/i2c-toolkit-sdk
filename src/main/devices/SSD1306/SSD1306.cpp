@@ -35,36 +35,6 @@ SSD1306::SSD1306(uint32_t i2cPort, uint8_t address)
 
 SSD1306::~SSD1306(){
 	this->displayOn(false);
-	close(this->_fileDescriptor);
-}
-
-void SSD1306::init(){
-
-	fprintf(stdout,"Initializing SSD1306\n");
-	switch(this->_i2cPort){
-
-		case 0: this->_fileDescriptor = open(__RPI_I2C_PORT0,O_RDWR);break;
-		case 1: this->_fileDescriptor = open(__RPI_I2C_PORT1,O_RDWR);break;
-		default: 
-			//Exception
-		break;
-	}
-
-	if (this->_fileDescriptor < 0)
-	{
-		perror("open: ");
-	} else {
-		fprintf(stdout,"Filedescriptor: %d\n",this->_fileDescriptor);
-	}
-
-	
-	int r = ioctl(this->_fileDescriptor, I2C_SLAVE, this->_slaveAddress);
-	if ( r < 0)
-	{
-		perror("ioctl: ");
-	} else {
-		fprintf(stdout,"ioctl result: %d\n", r);
-	}
 }
 
 void SSD1306::resetCommandBuffer()

@@ -20,4 +20,11 @@
 #ifndef __I2C_TK_SDK_I2CIO_ESP3266_H__
 #define __I2C_TK_SDK_I2CIO_ESP3266_H__
 
+#include "I2CInputOutput.h"
+
+class ESP8266_I2CInputOutput : public I2CInputOutput {
+private:
+protected:
+public:
+};
 #endif //__I2C_TK_SDK_I2CIO_ESP3266_H__

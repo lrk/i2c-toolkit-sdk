@@ -20,4 +20,29 @@
 #ifndef __I2C_TK_SDK_I2CIO_RPI_H__
 #define __I2C_TK_SDK_I2CIO_RPI_H__
 
+#include "I2CInputOutput.h"
+
+ 
+#ifndef __I2C_TK_SDK_I2CIO_RPI_PORTS__
+
+#define __I2C_TK_SDK_I2CIO_RPI_PORT0		"/dev/i2c-0"
+#define __I2C_TK_SDK_I2CIO_RPI_PORT1 	"/dev/i2c-1"
+
+#endif //__I2C_TK_SDK_I2CIO_RPI_PORTS__
+
+
+class RPI_I2CInputOutput : public I2CInputOutput {
+private:
+	int _fileDescriptor;
+	uint8_t	_i2cPort;
+protected:
+public:
+	RPI_I2CInputOutput();
+	~RPI_I2CInputOutput();
+	int	setup(); //Initialize I²C communications
+	int release(); //Release I²C communications
+	
+	int read(uint8_t *buffer,int len); //Read data from I²C
+	int write(uint8_t *data, uint32_t len); //write data to I²C
+};
 #endif //__I2C_TK_SDK_I2CIO_RPI_H__

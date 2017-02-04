@@ -20,11 +20,7 @@
 #ifndef __I2C_TK_SDK_I2CIO_SSD1306_H__
 
 #define __I2C_TK_SDK_I2CIO_SSD1306_H__
- 
-#ifndef __RPI_I2C_PORTS__
-#define __RPI_I2C_PORT0 "/dev/i2c-0"
-#define __RPI_I2C_PORT1 "/dev/i2c-1"
-#endif //__RPI_I2C_PORTS__
+
 //Commands
 #define __SSD1306_CMD_SET_CONTRAST 					0x81
 #define __SSD1306_CMD_ENTIRE_DISPLAY_ON 			0xA4

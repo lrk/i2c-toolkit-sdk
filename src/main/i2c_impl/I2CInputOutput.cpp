@@ -14,22 +14,8 @@
  * limitations under the License.
  */
 
-#ifndef __I2C_TK_SDK_I2CIO_H__
-#define __I2C_TK_SDK_I2CIO_H__
+#include "I2CInputOutput.h"
 
-#define I2CIO_ERROR_OK			0
-#define I2CIO_ERROR_ERROR		-1
-
-
-class I2CInputOutput {
-private:
-protected:
-public:
-	~I2CInputOutput();
-	virtual int	setup() = 0; //Initialize I²C communications
-	virtual int release() = 0; //Release I²C communications
-	
-	virtual int read(uint8_t *buffer,int len) = 0; //Read data from I²C
-	virtual int write(uint8_t *data, uint32_t len) = 0; //write data to I²C
-};
-#endif //__I2C_TK_SDK_I2CIO_H__
+I2CInputOutput::~I2CInputOutput(){
+	this->release();
+}

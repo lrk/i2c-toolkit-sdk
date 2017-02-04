@@ -14,22 +14,14 @@
  * limitations under the License.
  */
 
-#ifndef __I2C_TK_SDK_I2CIO_H__
-#define __I2C_TK_SDK_I2CIO_H__
+#include "AbstractI2CDevice.h"
 
-#define I2CIO_ERROR_OK			0
-#define I2CIO_ERROR_ERROR		-1
-
-
-class I2CInputOutput {
-private:
-protected:
-public:
-	~I2CInputOutput();
-	virtual int	setup() = 0; //Initialize I²C communications
-	virtual int release() = 0; //Release I²C communications
-	
-	virtual int read(uint8_t *buffer,int len) = 0; //Read data from I²C
-	virtual int write(uint8_t *data, uint32_t len) = 0; //write data to I²C
-};
-#endif //__I2C_TK_SDK_I2CIO_H__
+AbstractI2CDevice::AbstractI2CDevice(uint8_t address, I2CInputOutput *i2cIO)
+	_deviceAddress(address)
+{
+	if (i2cIO == NULL)
+	{
+		//Fatal Error
+	}
+	this->_i2cIO = i2cIO;
+}

@@ -17,6 +17,7 @@
 #ifndef __I2C_TK_SDK_ABSTRACT_DEVICE_H__
 #define __I2C_TK_SDK_ABSTRACT_DEVICE_H__
 
+#include "../i2c_impl/I2CInputOutput.h"
 
 /*
 	Abstract I²C Device
@@ -24,10 +25,14 @@
 class AbstractI2CDevice {
 private:
 	uint8_t	_deviceAddress;	//unsigned short for device I²C Address
+	I2CInputOutput *_i2cIO;
 protected:
 public:
-	AbstractI2CDevice(uint8_t address)_deviceAddress(address){};
+	AbstractI2CDevice(uint8_t address, I2CInputOutput *i2cIO);
 	~AbstractI2CDevice();
+
+	virtual int initialize() = 0; //Send initialization commands to device
+	
 }
 
 #endif //__I2C_TK_SDK_ABSTRACT_DEVICE_H__
