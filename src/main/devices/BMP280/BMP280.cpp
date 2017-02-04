@@ -150,7 +150,26 @@ double BMP280::pressure()
 }
 
 double BMP280::compensatePressure(int32_t rawValue){
-	return (double)rawValue;
+	
+	double x1 = ((double) this->_fineTemperature / 2.0) - 64000.0;
+	double x2 = x1 * x1 * ((double) this->_calibration.digP6) / 32768.0;
+
+	x2 += x1 * ((double) this->_calibration.digP5) * 2.0;
+	x2 = (x2  / 4.0) + (((double) this->_calibration.digP4) * 65536.0); 
+	x1 = (((double)  this->_calibration.digP3) * x1 * x1 / 524288.0 + ((double) this->_calibration.digP2) * x1) / 524288.0;
+	x1 = (1.0 + x1 / 32768.0) * ((double) this->_calibration.digP1);
+
+	double pressure = 1048576.0 - (double)rawValue;
+	if (x1 == 0)
+	{
+		return 0.0;
+	}
+
+	pressure = (pressure - (x2 / 4096.0))  * (6250.0 / x1);
+	x1 = ((double) this->_calibration.digP9) * pressure * pressure / 2147483648.0;
+	x2 = pressure * ((double) this->_calibration.digP8) / 32768.0;
+	pressure = pressure + (x1 + x2 + ((double) this->_calibration.digP7)) / 16.0;
+ 	return pressure;
 }
 
 /*
