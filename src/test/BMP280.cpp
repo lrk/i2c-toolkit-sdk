@@ -17,6 +17,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <iostream>
+#include <iomanip>
 #include <string.h>
 #include "../main/devices/BMP280/BMP280.h"
 #include "../main/i2c_impl/RaspberryPi.h"
