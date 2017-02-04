@@ -1,4 +1,4 @@
-# I²C Toolkit
+# I²C Toolkit SDK
 
 > Actually in development, not currently working !
 
