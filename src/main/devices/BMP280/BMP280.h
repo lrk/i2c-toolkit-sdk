@@ -67,6 +67,12 @@
 #define __BMP280_REGISTER_TEMPERATURE_LSB			0xFB
 #define __BMP280_REGISTER_TEMPERATURE_XLSB			0xFC
 
+//Timing
+#define __BMP280_T_INIT_MAX							20	/* 20/16 = 1.25 	ms */
+#define __BMP280_T_MEASURE_PER_OSRS_MAX				37	/* 37/16 = 2.3125	ms */
+#define __BMP280_T_SETUP_PRESSURE_MAX				10	/* 10/16 = 0.625	ms */
+
+
 //Predefined values
 #define __BMP280_CONST_COMPLETE_RESET				0xB6
 
@@ -116,11 +122,14 @@ class BMP280: public I2CDevice {
 private:
 	uint8_t	_chipId;
 	BMP280_CALIBRATION _calibration;
+	BMP280_OVERSAMPLING _temperatureOversampling;
+	BMP280_OVERSAMPLING _pressureOversampling;
+	BMP280_OPERATING_MODE _operatingMode;
 	int32_t	_fineTemperature;
 	uint8_t readChipId();
 	double	compensateTemperature(int32_t rawValue);
 	double	compensatePressure(int32_t rawValue);
-
+	uint8_t	computeWaitingTime();
 protected:
 public:
 	BMP280(uint8_t address, I2CInputOutput *i2cIO);

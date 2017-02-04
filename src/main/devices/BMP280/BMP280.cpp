@@ -22,7 +22,10 @@
 
 BMP280::BMP280(uint8_t address, I2CInputOutput *i2cIO) : 
 	I2CDevice(address,i2cIO),
-	_fineTemperature(0)
+	_fineTemperature(0);
+	_temperatureOversampling(SKIPPED),
+	_pressureOversampling(SKIPPED),
+	_operatingMode(SLEEP)
 {
 }
 
@@ -64,6 +67,10 @@ void BMP280::reset(bool completeReset)
 {
 	uint8_t buffer[2] = {__BMP280_REGISTER_RESET, completeReset ? __BMP280_CONST_COMPLETE_RESET : 0x00};
 	I2CDevice::write(buffer,2);
+
+	this->_temperatureOversampling = SKIPPED;
+	this->_pressureOversampling = SKIPPED;
+	this->_operatingMode = SLEEP;
 }
 
 /*
@@ -109,6 +116,11 @@ BMP280_STATUS BMP280::status()
 
 void BMP280::controlMeasure(BMP280_OVERSAMPLING pressureOversampling, BMP280_OVERSAMPLING temperatureOversampling, BMP280_OPERATING_MODE operatingMode)
 {
+	this->_temperatureOversampling = pressureOversampling;
+	this->_pressureOversampling = temperatureOversampling;
+	this->_operatingMode = operatingMode;
+
+
 	uint8_t value = ((pressureOversampling & 0x07) << 5) | 
 					((temperatureOversampling & 0x07) << 2) |
 					(operatingMode & 0x03);
@@ -238,4 +250,14 @@ BMP280_CALIBRATION BMP280::readCalibration()
 	calibration.digP9 = (int16_t)((((int16_t)((int8_t)data[23])) << 8) | data[22]);
 
 	return calibration;
+}
+
+uint8_t BMP280::computeWaitingTime()
+{
+	uint8_t wt = (__BMP280_T_INIT_MAX + __BMP280_T_MEASURE_PER_OSRS_MAX * (
+					((1 << this->_temperatureOversampling) >> 1) +
+					((1 << this->_pressureOversampling) >> 1)) +
+					((this->_pressureOversampling > 0) ? __BMP280_T_SETUP_PRESSURE_MAX : 0) +
+					15) / 16;
+	return wt;
 }
