@@ -32,7 +32,7 @@ int main()
 	cout << "Initializing Device" << endl;
 	bmp280->initialize();
 
-	cout << "Chip ID: " << bmp280->getChipId() << endl;
+	cout << "Chip ID: " <<  hex << setw(2) <<  bmp280->getChipId() << endl;
 
 	cout << "Clearing resources" << endl;
 	delete(bmp280);
