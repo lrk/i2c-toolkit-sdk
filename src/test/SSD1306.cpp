@@ -17,7 +17,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <string.h>
-#include "../main/SSD1306/SSD1306.h"
+#include "../main/devices/SSD1306/SSD1306.h"
 
 using namespace std;
 int main()

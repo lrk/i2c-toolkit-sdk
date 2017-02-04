@@ -18,7 +18,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <string.h>
-#include "../main/BMP280/BMP280.h"
+#include "../main/devices/BMP280/BMP280.h"
 
 using namespace std;
 int main()
