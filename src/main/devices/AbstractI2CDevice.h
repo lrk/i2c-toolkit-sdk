@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 
+#ifndef __I2C_TK_SDK_ABSTRACT_DEVICE_H__
+#define __I2C_TK_SDK_ABSTRACT_DEVICE_H__
+
 
 /*
 	Abstract I²C Device
@@ -26,3 +29,5 @@ public:
 	AbstractI2CDevice(uint8_t address)_deviceAddress(address){};
 	~AbstractI2CDevice();
 }
+
+#endif //__I2C_TK_SDK_ABSTRACT_DEVICE_H__

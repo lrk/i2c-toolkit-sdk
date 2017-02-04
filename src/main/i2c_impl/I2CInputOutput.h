@@ -13,3 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+#ifndef __I2C_TK_SDK_I2CIO_H__
+#define __I2C_TK_SDK_I2CIO_H__
+
+#endif //__I2C_TK_SDK_I2CIO_H__

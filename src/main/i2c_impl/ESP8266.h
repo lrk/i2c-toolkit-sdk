@@ -17,3 +17,7 @@
 /*
 	I²C communication implementation of I2C Input Output for ESP8266
 */
+#ifndef __I2C_TK_SDK_I2CIO_ESP3266_H__
+#define __I2C_TK_SDK_I2CIO_ESP3266_H__
+
+#endif //__I2C_TK_SDK_I2CIO_ESP3266_H__

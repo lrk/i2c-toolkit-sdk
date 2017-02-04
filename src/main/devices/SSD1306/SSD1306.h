@@ -17,9 +17,9 @@
 #include <stdio.h>
 #include "../AbstractI2CDevice.h"
 
-#ifndef __SSD1306_H__
+#ifndef __I2C_TK_SDK_I2CIO_SSD1306_H__
 
-#define __SSD1306_H__
+#define __I2C_TK_SDK_I2CIO_SSD1306_H__
  
 #ifndef __RPI_I2C_PORTS__
 #define __RPI_I2C_PORT0 "/dev/i2c-0"
@@ -103,4 +103,4 @@ public:
 	void setMemoryAddressingMode(uint8_t mode);
 };
 
-#endif //__SSD1306_H__
+#endif //__I2C_TK_SDK_I2CIO_SSD1306_H__

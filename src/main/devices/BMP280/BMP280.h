@@ -18,9 +18,9 @@
 #include <stdio.h>
 #include "../AbstractI2CDevice.h"
 
-#ifndef __BMP280_H__
+#ifndef __I2C_TK_SDK_BMP280_H__
 
-#define __BMP280_H__
+#define __I2C_TK_SDK_BMP280_H__
 
 #ifndef __RPI_I2C_PORTS__
 #define __RPI_I2C_PORT0 "/dev/i2c-0"
@@ -106,4 +106,4 @@ public:
 	~BMP280();
 }
 
-#endif // __BMP280_H__
+#endif // __I2C_TK_SDK_BMP280_H__

@@ -17,3 +17,7 @@
 /*
 	I²C communication implementation of I2C Input Output for Raspberry PI
 */
+#ifndef __I2C_TK_SDK_I2CIO_RPI_H__
+#define __I2C_TK_SDK_I2CIO_RPI_H__
+
+#endif //__I2C_TK_SDK_I2CIO_RPI_H__
