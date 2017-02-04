@@ -31,7 +31,8 @@ RPI_I2CInputOutput::~RPI_I2CInputOutput(){
 
 }
 
-int	RPI_I2CInputOutput::setup(){
+int	RPI_I2CInputOutput::setup(uint8_t deviceAddress) {
+	this->setDeviceAddress(deviceAddress);
 
 	switch(this->_i2cPort)
 	{
@@ -52,7 +53,7 @@ int	RPI_I2CInputOutput::setup(){
 	}
 
 	
-	int r = ioctl(this->_fileDescriptor, I2C_SLAVE, this->_slaveAddress);
+	int r = ioctl(this->_fileDescriptor, I2C_SLAVE, this->getDeviceAddress());
 	if ( r < 0)
 	{
 		perror("ioctl: ");

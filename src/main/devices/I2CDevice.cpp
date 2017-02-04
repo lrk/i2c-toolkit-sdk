@@ -26,6 +26,14 @@ I2CDevice::I2CDevice(uint8_t address, I2CInputOutput *i2cIO) :
 	this->_i2cIO = i2cIO;
 }
 
+void I2CDevice::setup()
+{
+	if (this->_i2cIO != 0)
+	{
+		this->_i2cIO->setup(_deviceAddress);
+	}
+}
+
 int I2CDevice::read(uint8_t *buffer, uint32_t len){
 	if (this->_i2cIO == 0)
 	{

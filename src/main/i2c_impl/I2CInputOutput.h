@@ -24,9 +24,15 @@
 
 class I2CInputOutput {
 private:
+	uint8_t _deviceAddress;
 protected:
+
 public:
+	I2CInputOutput();
 	virtual ~I2CInputOutput();
+	
+	void setDeviceAddress(uint8_t deviceAddress);
+	uint8_t getDeviceAddress();
 	
 	virtual int	setup() = 0; //Initialize I²C communications
 	virtual int release() = 0; //Release I²C communications

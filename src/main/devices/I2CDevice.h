@@ -36,6 +36,7 @@ public:
 	I2CDevice(uint8_t address, I2CInputOutput *i2cIO);
 	~I2CDevice(){};
 
+	void setup();
 	virtual int initialize() = 0; //Send initialization commands to device
 
 	
