@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include <stdint.h>
+
 #include <stdio.h>
 #include "../I2CDevice.h"
 
@@ -72,6 +72,7 @@ public:
 	SSD1306(uint8_t address, I2CInputOutput *i2cIO);
 	~SSD1306();
 
+	void send(uint8_t *data, uint32_t len);
 	void boot();
 	void displayOn(bool enabled);
 	void setContrast(double percentage);

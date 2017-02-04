@@ -88,7 +88,7 @@ typedef struct __BMP280_CALIBRATION {
 class BMP280: public I2CDevice {
 private:
 	uint8_t	chipId;
-	struct BMP280_CALIBRATION _calibration;
+	BMP280_CALIBRATION _calibration;
 
 	void init();
 protected:

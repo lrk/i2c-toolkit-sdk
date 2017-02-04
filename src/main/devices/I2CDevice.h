@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+#include <stdint.h>
 
 #ifndef __I2C_TK_SDK_ABSTRACT_DEVICE_H__
 #define __I2C_TK_SDK_ABSTRACT_DEVICE_H__
@@ -33,11 +34,11 @@ protected:
 
 public:
 	I2CDevice(uint8_t address, I2CInputOutput *i2cIO);
-	~I2CDevice();
+	~I2CDevice(){};
 
 	virtual int initialize() = 0; //Send initialization commands to device
 
 	
-}
+};
 
 #endif //__I2C_TK_SDK_ABSTRACT_DEVICE_H__

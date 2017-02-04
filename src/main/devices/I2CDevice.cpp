@@ -19,7 +19,7 @@
 I2CDevice::I2CDevice(uint8_t address, I2CInputOutput *i2cIO) :
 	_deviceAddress(address)
 {
-	if (i2cIO == NULL)
+	if (i2cIO == 0)
 	{
 		//Fatal Error
 	}
@@ -27,7 +27,7 @@ I2CDevice::I2CDevice(uint8_t address, I2CInputOutput *i2cIO) :
 }
 
 int I2CDevice::read(uint8_t *buffer, uint32_t len){
-	if (this->_i2cIO == null)
+	if (this->_i2cIO == 0)
 	{
 		return I2CIO_ERROR_ERROR;
 	}
@@ -36,7 +36,7 @@ int I2CDevice::read(uint8_t *buffer, uint32_t len){
 }
 
 int I2CDevice::write(uint8_t *data, uint32_t len){
-	if (this->_i2cIO == null)
+	if (this->_i2cIO == 0)
 	{
 		return I2CIO_ERROR_ERROR;
 	}
