@@ -29,7 +29,7 @@ public:
 	virtual int	setup() = 0; //Initialize I²C communications
 	virtual int release() = 0; //Release I²C communications
 	
-	virtual int read(uint8_t *buffer,int len) = 0; //Read data from I²C
+	virtual int read(uint8_t *buffer,uint32_t len) = 0; //Read data from I²C
 	virtual int write(uint8_t *data, uint32_t len) = 0; //write data to I²C
 };
 #endif //__I2C_TK_SDK_I2CIO_H__

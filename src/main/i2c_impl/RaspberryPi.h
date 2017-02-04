@@ -25,7 +25,7 @@
  
 #ifndef __I2C_TK_SDK_I2CIO_RPI_PORTS__
 
-#define __I2C_TK_SDK_I2CIO_RPI_PORT0		"/dev/i2c-0"
+#define __I2C_TK_SDK_I2CIO_RPI_PORT0	"/dev/i2c-0"
 #define __I2C_TK_SDK_I2CIO_RPI_PORT1 	"/dev/i2c-1"
 
 #endif //__I2C_TK_SDK_I2CIO_RPI_PORTS__
@@ -42,7 +42,7 @@ public:
 	int	setup(); //Initialize I²C communications
 	int release(); //Release I²C communications
 	
-	int read(uint8_t *buffer,int len); //Read data from I²C
+	int read(uint8_t *buffer,uint32_t len); //Read data from I²C
 	int write(uint8_t *data, uint32_t len); //write data to I²C
 };
 #endif //__I2C_TK_SDK_I2CIO_RPI_H__

@@ -72,8 +72,6 @@ public:
 	SSD1306(uint32_t i2cPort, uint8_t address);
 	~SSD1306();
 
-	void send(uint8_t *data, uint32_t len);
-
 	void boot();
 	void displayOn(bool enabled);
 	void setContrast(double percentage);

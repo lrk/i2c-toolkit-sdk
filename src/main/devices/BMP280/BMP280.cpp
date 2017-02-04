@@ -18,11 +18,9 @@
 #include <fcntl.h>
 #include <string.h>
 #include <unistd.h>
-#include <sys/ioctl.h>
-#include <linux/i2c-dev.h>
 #include "BMP280.h"
 
-BMP280::BMP280(uint32_t i2cPort, uint8_t address) 
+BMP280::BMP280(uint8_t address, I2CInputOutput *i2cIO) 
 	_i2cPort(i2cPort),
 	_slaveAddress(address)
 {

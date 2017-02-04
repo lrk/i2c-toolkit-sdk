@@ -19,13 +19,7 @@
 #include "../I2CDevice.h"
 
 #ifndef __I2C_TK_SDK_BMP280_H__
-
 #define __I2C_TK_SDK_BMP280_H__
-
-#ifndef __RPI_I2C_PORTS__
-#define __RPI_I2C_PORT0 "/dev/i2c-0"
-#define __RPI_I2C_PORT1 "/dev/i2c-1"
-#endif //__RPI_I2C_PORTS__
 
 //Valid chip ID
 #define __BMP280_CHIP_ID1	0x56
@@ -73,7 +67,7 @@
 #define __BMP280_REGISTER_TEMPERATURE_LSB			0xFB
 #define __BMP280_REGISTER_TEMPERATURE_XLSB			0xFC
 
-typedef struct _BMP280_CALIBRATION {
+typedef struct __BMP280_CALIBRATION {
 	uint16_t 	digT1;
 	int16_t 	digT2;
 	int16_t 	digT3;
@@ -93,17 +87,14 @@ typedef struct _BMP280_CALIBRATION {
 
 class BMP280: public I2CDevice {
 private:
-	uint8_t	_i2cPort;
-	uint8_t	_slaveAddress;
-
 	uint8_t	chipId;
 	struct BMP280_CALIBRATION _calibration;
 
 	void init();
 protected:
 public:
-	BMP280(uint32_t i2cPort, uint8_t address);
+	BMP280(uint8_t address, I2CInputOutput *i2cIO);
 	~BMP280();
-}
+};
 
 #endif // __I2C_TK_SDK_BMP280_H__

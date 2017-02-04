@@ -68,3 +68,13 @@ int RPI_I2CInputOutput::release(){
 	close(this->_fileDescriptor);
 	return I2CIO_ERROR_OK;
 }
+
+int RPI_I2CInputOutput::read(uint8_t *buffer,uint32_t len){
+	//TODO Implementation
+	return 0;
+}
+
+int RPI_I2CInputOutput::write(uint8_t *data, uint32_t len){
+	int count = write(this->_fileDescriptor,data,sizeof(uint8_t)*len);
+	return count;
+}

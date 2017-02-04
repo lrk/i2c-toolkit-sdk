@@ -17,11 +17,10 @@
 #include <fcntl.h>
 #include <string.h>
 #include <unistd.h>
-#include <sys/ioctl.h>
-#include <linux/i2c-dev.h>
 #include "SSD1306.h"
 
-SSD1306::SSD1306(uint32_t i2cPort, uint8_t address)
+SSD1306::SSD1306(uint8_t address, I2CInputOutput *i2cIO) :
+
 {
 	this->_bufferMode=false;
 	this->_isCommandMode = true;
@@ -87,10 +86,10 @@ void SSD1306::send(uint8_t *data, uint32_t len)
 		}
 		fprintf(stdout, "\n");
 
-		if (write(this->_fileDescriptor,packet,sizeof(uint8_t)*plen) != plen){
+
+		if (this->write(packet,sizeof(uint8_t)*plen) != plen){
 			perror("write: ");
 		}
-		//usleep(2000);
 	}
 }
 
