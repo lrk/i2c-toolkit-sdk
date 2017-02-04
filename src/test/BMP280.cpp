@@ -27,13 +27,6 @@ using namespace std;
 RPI_I2CInputOutput *RPI_IO=0;
 BMP280 *bmp280=0;
 
-void signal_callback(int s){
-    printf("Caught signal %d\n",s);
-
-    freeResources();
-    exit(1); 
-}
-
 void freeResources()
 {
 	cout << "Clearing resources" << endl;
@@ -47,6 +40,15 @@ void freeResources()
     	delete(bmp280);
     }
 }
+
+void signal_callback(int s){
+    printf("Caught signal %d\n",s);
+
+    freeResources();
+    exit(1); 
+}
+
+
 
 void initializeSignalCallback()
 {
