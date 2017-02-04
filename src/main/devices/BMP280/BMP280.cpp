@@ -20,9 +20,7 @@
 #include <unistd.h>
 #include "BMP280.h"
 
-BMP280::BMP280(uint8_t address, I2CInputOutput *i2cIO) 
-	_i2cPort(i2cPort),
-	_slaveAddress(address)
+BMP280::BMP280(uint8_t address, I2CInputOutput *i2cIO) : I2CDevice(address,i2cIO)
 {
 
 }

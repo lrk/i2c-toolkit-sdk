@@ -19,14 +19,11 @@
 #include <unistd.h>
 #include "SSD1306.h"
 
-SSD1306::SSD1306(uint8_t address, I2CInputOutput *i2cIO) :
-
+SSD1306::SSD1306(uint8_t address, I2CInputOutput *i2cIO) : I2CDevice(address,i2cIO)
+	
 {
 	this->_bufferMode=false;
 	this->_isCommandMode = true;
-	this->_i2cPort = i2cPort;
-	this->_slaveAddress = address;
-
 	this->resetCommandBuffer();
 
 	this->init();

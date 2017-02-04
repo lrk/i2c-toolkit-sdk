@@ -69,7 +69,7 @@ private:
 
 	void setBufferMode(bool bufferEnabled);
 public:
-	SSD1306(uint32_t i2cPort, uint8_t address);
+	SSD1306(uint8_t address, I2CInputOutput *i2cIO);
 	~SSD1306();
 
 	void boot();

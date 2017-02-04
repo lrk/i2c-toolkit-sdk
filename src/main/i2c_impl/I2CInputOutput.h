@@ -26,6 +26,7 @@ private:
 protected:
 public:
 	~I2CInputOutput();
+	
 	virtual int	setup() = 0; //Initialize I²C communications
 	virtual int release() = 0; //Release I²C communications
 	

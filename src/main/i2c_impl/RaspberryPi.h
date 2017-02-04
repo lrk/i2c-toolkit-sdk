@@ -37,7 +37,7 @@ private:
 	int _fileDescriptor;
 protected:
 public:
-	RPI_I2CInputOutput();
+	RPI_I2CInputOutput(uint8_t i2cPort);
 	~RPI_I2CInputOutput();
 	
 	int	setup(); //Initialize I²C communications
