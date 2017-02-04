@@ -28,16 +28,17 @@ BMP280::~BMP280(){
 
 }
 
-void BMP280::initialize(){
+int BMP280::initialize(){
 	//Read chip id
 	this->_chipId = this->readChipId();
+	return 0;
 }
 
 
 uint8_t BMP280::readChipId()
 {
 	uint8_t buffer[1] = {0};
-	this->read(__BMP280_REGISTER_CHIP_ID,buffer,1);
+	I2CDevice::read(__BMP280_REGISTER_CHIP_ID,buffer,1);
 	return buffer[0];
 }
 

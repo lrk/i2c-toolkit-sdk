@@ -102,7 +102,7 @@ public:
 	BMP280(uint8_t address, I2CInputOutput *i2cIO);
 	~BMP280();
 
-	void initialize();
+	int initialize();
 
 	BMP280_VALUES read();
 

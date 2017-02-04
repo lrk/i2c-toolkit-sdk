@@ -83,6 +83,7 @@ SSD1306::initialize()
 
 	this->setBufferMode(false);
 	this->flushBuffer();
+	return 0;
 }
 
 void SSD1306::resetCommandBuffer()

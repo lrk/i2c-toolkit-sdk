@@ -116,7 +116,7 @@ protected:
 public:
 	BME280(uint8_t address, I2CInputOutput *i2cIO);
 	~BME280();
-	void initialize();
+	int initialize();
 };
 
 #endif // __I2C_TK_SDK_BME280_H__

@@ -31,6 +31,7 @@ BME280::~BME280(){
 
 }
 
-void BME280::initialize(){
+int BME280::initialize(){
 	//Read chip id
+	return 0;
 }
