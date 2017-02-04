@@ -32,7 +32,7 @@ BME280::~BME280(){
 }
 
 int BME280::initialize(){
-	I2CDevice::init();
+	I2CDevice::initialize();
 	//Read chip id
 	return 0;
 }
