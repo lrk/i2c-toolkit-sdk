@@ -105,20 +105,20 @@ void SSD1306::setContrast(double percentage)
 
 void SSD1306::entireDisplayOn(bool ignoreRam)
 {
-	uint8_t data[]={__SSD1306_CMD_ENTIRE_DISPLAY_ON | ignoreRam};
+	uint8_t data[]={__SSD1306_CMD_ENTIRE_DISPLAY_ON | (uint8_t)ignoreRam};
 	this->send(data,1);
 };
 
 void SSD1306::displayOn(bool enabled)
 {
-	uint8_t data[] = {__SSD1306_CMD_DISPLAY_ON | enabled};
+	uint8_t data[] = {__SSD1306_CMD_DISPLAY_ON | (uint8_t)enabled};
 	this->send(data,1);
 }
 
 void SSD1306::invertDisplay(bool invert)
 {
 	
-	uint8_t data[] = {__SSD1306_CMD_DISPLAY_INVERT_NORMAL | invert};
+	uint8_t data[] = {__SSD1306_CMD_DISPLAY_INVERT_NORMAL | (uint8_t)invert};
 	this->send(data,1);
 }
 
@@ -142,7 +142,7 @@ void SSD1306::setDisplayStartLine(uint8_t value)
 
 void SSD1306::setSegmentRemap(bool invert)
 {
-	uint8_t data[] = {__SSD1306_CMD_SET_SEGMENT_REMAP | invert};
+	uint8_t data[] = {__SSD1306_CMD_SET_SEGMENT_REMAP | (uint8_t)invert};
 	this->send(data,1);	
 }
 
