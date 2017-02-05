@@ -102,21 +102,30 @@ int main()
 	cout << endl;
 
 	cout << "Looping through reading T° & hPa" << endl;
-	bmp280->controlMeasure(OVERSAMPLING_1X,OVERSAMPLING_1X,NORMAL);
+	
 	
 	double temperature = 0.0;
 	double pressure = 0.0;
-    	cout << "Press CTRL+C to quit" << endl;
+    
+    cout << "Press CTRL+C to quit" << endl;
+    bool normalMode = false;
     while(true){
 		
-		bmp280->forceReadTemperaturePresure(&temperature,&pressure);
-    	cout << "Reading Temperature: " << temperature << endl;
-    	cout << "Reading Pressure: " << pressure<< endl;
-    	
-    	/*
-		cout << "Reading Temperature: " << bmp280->temperature() << endl;
-    	cout << "Reading Pressure: " << bmp280->pressure() << endl;
-    	*/
+		if (normalMode)
+		{
+			bmp280->controlMeasure(OVERSAMPLING_1X,OVERSAMPLING_1X,NORMAL);
+			usleep(5000);
+			cout << "Reading Temperature: " << bmp280->temperature() << endl;
+    		cout << "Reading Pressure: " << bmp280->pressure() << endl;
+			normalMode = false;
+
+		}else{
+
+			bmp280->forceReadTemperaturePresure(&temperature,&pressure);
+    		cout << "Reading Temperature: " << temperature << endl;
+    		cout << "Reading Pressure: " << pressure<< endl;
+    		normalMode = true;
+		}
     	usleep(50000);
     };
     
