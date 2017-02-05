@@ -114,8 +114,8 @@ typedef enum __BMP280_OVERSAMPLING {
 
 typedef enum __BMP280_OPERATING_MODE {
 	SLEEP 	= 0x00,
-	NORMAL	= 0x03,
-	FORCED	= 0x01
+	FORCED	= 0x01,
+	NORMAL	= 0x03
 } BMP280_OPERATING_MODE;
 
 class BMP280: public I2CDevice {

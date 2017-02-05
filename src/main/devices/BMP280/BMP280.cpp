@@ -250,25 +250,24 @@ BMP280_CALIBRATION BMP280::readCalibration()
 {
 	uint8_t buffer[1] = {	__BMP280_REGISTER_CALIBRATION_DIG_TEMPERATURE_T1_LSB};
 	I2CDevice::write(buffer,1);
-	I2CDevice::waitForResponse();
 	uint8_t data[24];
 	memset(&data[0], 0, sizeof(uint8_t)*24);
 	I2CDevice::read(data,24);
 
 	BMP280_CALIBRATION calibration;
-	calibration.digT1 = (uint16_t)((((uint16_t)data[1]) << 8) | data[0]);
-	calibration.digT2 = (int16_t)((((int16_t)((int8_t)data[3])) << 8) | data[2]);
-	calibration.digT3 = (int16_t)((((int16_t)((int8_t)data[5])) << 8) | data[4]);
+	calibration.digT1 = (uint16_t)((((uint16_t)((uint8_t)data[1])) 	<< 8) | data[0]);
+	calibration.digT2 = (int16_t)((((int16_t)((int8_t)data[3])) 	<< 8) | data[2]);
+	calibration.digT3 = (int16_t)((((int16_t)((int8_t)data[5])) 	<< 8) | data[4]);
 
-	calibration.digP1 = (uint16_t)((((uint16_t)data[7]) << 8) | data[6]);
-	calibration.digP2 = (int16_t)((((int16_t)((int8_t)data[9])) << 8) | data[8]);
-	calibration.digP3 = (int16_t)((((int16_t)((int8_t)data[11])) << 8) | data[10]);
-	calibration.digP4 = (int16_t)((((int16_t)((int8_t)data[13])) << 8) | data[12]);
-	calibration.digP5 = (int16_t)((((int16_t)((int8_t)data[15])) << 8) | data[14]);
-	calibration.digP6 = (int16_t)((((int16_t)((int8_t)data[17])) << 8) | data[16]);
-	calibration.digP7 = (int16_t)((((int16_t)((int8_t)data[19])) << 8) | data[18]);
-	calibration.digP8 = (int16_t)((((int16_t)((int8_t)data[21])) << 8) | data[20]);
-	calibration.digP9 = (int16_t)((((int16_t)((int8_t)data[23])) << 8) | data[22]);
+	calibration.digP1 = (uint16_t)((((uint16_t)((uint8_t)data[7])) 	<< 8) | data[6]);
+	calibration.digP2 = (int16_t)((((int16_t)((int8_t)data[9])) 	<< 8) | data[8]);
+	calibration.digP3 = (int16_t)((((int16_t)((int8_t)data[11])) 	<< 8) | data[10]);
+	calibration.digP4 = (int16_t)((((int16_t)((int8_t)data[13])) 	<< 8) | data[12]);
+	calibration.digP5 = (int16_t)((((int16_t)((int8_t)data[15])) 	<< 8) | data[14]);
+	calibration.digP6 = (int16_t)((((int16_t)((int8_t)data[17])) 	<< 8) | data[16]);
+	calibration.digP7 = (int16_t)((((int16_t)((int8_t)data[19])) 	<< 8) | data[18]);
+	calibration.digP8 = (int16_t)((((int16_t)((int8_t)data[21])) 	<< 8) | data[20]);
+	calibration.digP9 = (int16_t)((((int16_t)((int8_t)data[23])) 	<< 8) | data[22]);
 
 	return calibration;
 }
