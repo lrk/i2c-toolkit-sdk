@@ -109,11 +109,16 @@ int main()
     
     cout << "Press CTRL+C to quit" << endl;
     bool normalMode = false;
+
+	bmp280->controlMeasure(OVERSAMPLING_16X,OVERSAMPLING_16X,NORMAL);
+	usleep(5000);
     while(true){
-		
+    	cout << "Reading Temperature: " << bmp280->temperature() << " C°" << endl;
+    	cout << "Reading Pressure: " << bmp280->pressure() << " Pa"<< endl;
+		/*
 		if (normalMode)
 		{
-			bmp280->controlMeasure(OVERSAMPLING_1X,OVERSAMPLING_1X,NORMAL);
+			bmp280->controlMeasure(OVERSAMPLING_16X,OVERSAMPLING_16X,NORMAL);
 			usleep(5000);
 			cout << "Reading Temperature: " << bmp280->temperature() << " C°" << endl;
     		cout << "Reading Pressure: " << bmp280->pressure() << " Pa"<< endl;
@@ -127,6 +132,7 @@ int main()
     		normalMode = true;
 		}
     	//usleep(50000);
+    	*/
     	sleep(1);
     };
     
