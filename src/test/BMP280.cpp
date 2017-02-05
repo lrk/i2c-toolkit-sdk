@@ -108,9 +108,13 @@ int main()
 	double pressure = 0.0;
     while(true){
 		
-		//bmp280->forceReadTemperaturePresure(&temperature,&pressure);
-    	cout << "Reading Temperature: " << bmp280->temperature() << endl;
+		bmp280->forceReadTemperaturePresure(&temperature,&pressure);
+    	cout << "Reading Temperature: " << temperature << endl;
+    	cout << "Reading Pressure: " << pressure<< endl;
+    	/*
+		cout << "Reading Temperature: " << bmp280->temperature() << endl;
     	cout << "Reading Pressure: " << bmp280->pressure() << endl;
+    	*/
     	sleep(1);
     	cout << "Press CTRL+C to quit" << endl;
     };

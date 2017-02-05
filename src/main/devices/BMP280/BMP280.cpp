@@ -196,7 +196,7 @@ double BMP280::temperature()
 {
 	uint8_t reg[1] = {__BMP280_REGISTER_TEMPERATURE_MSB};
 	I2CDevice::write(reg,1);
-	
+
 	uint8_t buffer[3];
 	memset(&buffer[0],0,sizeof(uint8_t)*3);
 	I2CDevice::read(buffer,3);
@@ -227,15 +227,15 @@ void BMP280::forceReadTemperaturePresure(double *temperature, double *pressure)
 	uint8_t buffer[6];
 	memset(&buffer[0],0,sizeof(uint8_t)*6);
 	I2CDevice::read(buffer,6);
-	if (temperature != 0)
-	{
-		int32_t rawTemp =  (buffer[0] << 12) | (buffer[1] << 4) | ((buffer[2] & 0xF0) >> 4);
-		*temperature =  this->compensateTemperature(rawTemp);
-	}
 	if (pressure != 0)
 	{
-		int32_t rawPressure = (buffer[0] << 12) | (buffer[1] << 4) | ((buffer[2] & 0xF0) >> 4);
+		int32_t rawPressure = (int32_t) (((uint32_t) buffer[0]) << 12) | (((uint32_t) buffer[1]) << 4) | (((uint32_t)buffer[2]) >> 4);
 		*pressure= this->compensatePressure(rawPressure);
+	}
+	if (temperature != 0)
+	{
+		int32_t rawTemp = (int32_t) (((uint32_t) buffer[3]) << 12) | (((uint32_t) buffer[4]) << 4) | (((uint32_t)buffer[5]) >> 4);
+		*temperature =  this->compensateTemperature(rawTemp);
 	}
 }
 
