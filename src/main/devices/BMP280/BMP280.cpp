@@ -153,7 +153,9 @@ void BMP280::config()
  */
 double BMP280::pressure()
 {
-	I2CDevice::write(&__BMP280_REGISTER_PRESSURE_MSB,1);
+	uint8_t reg[1] = {__BMP280_REGISTER_PRESSURE_MSB};
+	I2CDevice::write(reg,1);
+
 	uint8_t buffer[3];
 	memset(&buffer[0],0,sizeof(uint8_t)*3);
 	I2CDevice::read(buffer,3);
@@ -192,7 +194,9 @@ double BMP280::compensatePressure(int32_t rawValue){
  */
 double BMP280::temperature()
 {
-	I2CDevice::write(&__BMP280_REGISTER_TEMPERATURE_MSB,1);
+	uint8_t reg[1] = {__BMP280_REGISTER_TEMPERATURE_MSB};
+	I2CDevice::write(reg,1);
+	
 	uint8_t buffer[3];
 	memset(&buffer[0],0,sizeof(uint8_t)*3);
 	I2CDevice::read(buffer,3);
