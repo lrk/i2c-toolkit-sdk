@@ -222,8 +222,10 @@ void BMP280::forceReadTemperaturePresure(double *temperature, double *pressure)
 {
 	this->controlMeasure(this->_pressureOversampling,this->_temperatureOversampling,FORCED);
 
-	//usleep(this->computeWaitingTime() * 1000);
+	usleep(this->computeWaitingTime() * 1000);
 
+	uint8_t reg[1] = {__BMP280_REGISTER_PRESSURE_MSB};
+	I2CDevice::write(reg,1);
 	uint8_t buffer[6];
 	memset(&buffer[0],0,sizeof(uint8_t)*6);
 	I2CDevice::read(buffer,6);
