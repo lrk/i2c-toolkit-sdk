@@ -126,7 +126,8 @@ int main()
     		cout << "Reading Pressure: " << pressure<< " Pa"<< endl;
     		normalMode = true;
 		}
-    	usleep(50000);
+    	//usleep(50000);
+    	sleep(1);
     };
     
     freeResources();
